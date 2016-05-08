@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_32"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/nav_by_ingredients"
+            android:icon="@drawable/ic_ingredients_32"
+            android:title="By Ingredients" />
+        <item
+            android:id="@+id/nav_by_category"
+            android:icon="@drawable/ic_recipes_list"
+            android:title="By Category" />
+        <item
+            android:id="@+id/nav_all_recipes"
+            android:icon="@drawable/ic_recipes_book"
+            android:title="All Recipes" />
+        <item
+            android:id="@+id/nav_favorites"
+            android:icon="@drawable/ic_favorite_star_32"
+            android:title="Favorites" />
+        <item
+            android:id="@+id/nav_worlds_best"
+            android:icon="@drawable/ic_top_star"
+            android:title="World's Best" />
+
+    </group>
+
+    <item android:title="Others">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings_3_gears"
+                android:title="Settings" />
+        </menu>
+    </item>
+
+</menu>
