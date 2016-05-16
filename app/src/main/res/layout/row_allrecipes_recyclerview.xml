@@ -1,45 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="3dp"
     android:background="@null"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="3dp">
 
     <android.support.v7.widget.CardView
         android:id="@+id/allrecipes_cardView"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="80dp">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:scaleType="fitXY"
-            android:layout_marginLeft="13dp"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/energy_data_image"
-            android:src="@drawable/ic_food_ready" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/energy_data_date"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:layout_marginLeft="60dp"
-            android:gravity="center_vertical"
-            android:text="25/02/2015"
-            android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/allrecipes_row_image"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="3dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/background_food_1" />
 
-        <TextView
-            android:id="@+id/energy_data_value"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:layout_marginRight="40dp"
-            android:gravity="center_vertical"
-            android:text="620.00"
-            android:textColor="@color/dark_deep_orange"
-            android:textSize="16sp" />
+            <LinearLayout
+                android:id="@+id/allrecipes_maintext_layout"
+                android:layout_width="190dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/allrecipes_row_image"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/allrecipes_row_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:padding="6dp"
+                    android:text="Chicken soup"
+                    android:textColor="@color/dark_blue_light"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/allrecipes_row_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:padding="3dp"
+                    android:text="lunch, dinner, brunch"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_marginLeft="15dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/allrecipes_maintext_layout"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center|left">
+
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_gravity="center_vertical"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_time_left" />
+
+                    <TextView
+                        android:id="@+id/allrecipes_row_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:gravity="center"
+                        android:text="1hr 30min"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center|left">
+
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_gravity="center_vertical"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_users_person_people" />
+
+                    <TextView
+                        android:id="@+id/allrecipes_row_portions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
+                        android:gravity="center"
+                        android:text="8"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
-</LinearLayout>
+</RelativeLayout>
