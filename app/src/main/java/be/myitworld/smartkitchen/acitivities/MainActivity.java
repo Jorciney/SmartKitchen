@@ -1,27 +1,24 @@
 package be.myitworld.smartkitchen.acitivities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import be.myitworld.smartkitchen.R;
 import be.myitworld.smartkitchen.tools.RootActivity;
 
 public class MainActivity extends RootActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Class fragmentClass = HomeFragment.class;
+    private Class fragmentClass = AllRecipesFragment.class;
     private Fragment fragment;
 
 
@@ -33,6 +30,7 @@ public class MainActivity extends RootActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 //
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +50,9 @@ public class MainActivity extends RootActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -96,12 +97,13 @@ public class MainActivity extends RootActivity
         } else if (id == R.id.nav_by_ingredients) {
 
         } else if (id == R.id.nav_by_category) {
-
+            fragmentClass = RecipeFragment.class;
         } else if (id == R.id.nav_favorites) {
 
         } else if (id == R.id.nav_worlds_best) {
 
         } else if (id == R.id.nav_all_recipes) {
+
             fragmentClass = AllRecipesFragment.class;
         }
 
@@ -116,13 +118,18 @@ public class MainActivity extends RootActivity
         return true;
     }
 
-    public void replaceFragment(Class fragmentClass) {
+    public  void replaceFragment(Class fragmentClass) {
         try {
             fragment = (Fragment) fragmentClass.newInstance();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.main_frameLayoutContent, fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.main_frameLayoutContent, fragment).addToBackStack(null).commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

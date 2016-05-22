@@ -9,13 +9,14 @@ import java.util.Objects;
 public class Recipe {
     private long id;
     private String title;
-    private List <Ingredient> ingredients;
+    private List<Ingredient> ingredients;
     private String description;
     private int portions;
     private String time;
     private String directions;
     private String author;
-    private List <String> images;
+    private List<String> images;
+    private int rate;
 
     public Recipe(long id, List<Ingredient> ingredients, String directions) {
         this.id = id;
@@ -95,16 +96,24 @@ public class Recipe {
         this.images = images;
     }
 
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
     @Override
     public int hashCode() {
-        return (this.getId()+"").hashCode();
+        return (this.getId() + "").hashCode();
     }
 
     @Override
     public boolean equals(Object o) {
-        if(o==null)
+        if (o == null)
             return false;
-        else if (o instanceof Recipe && o!=null && ((Recipe)o).getId()==this.getId())
+        else if (o instanceof Recipe && o != null && ((Recipe) o).getId() == this.getId())
             return true;
         else return false;
     }
