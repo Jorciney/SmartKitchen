@@ -2,15 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <SearchView
-        android:id="@+id/all_recipes_search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </SearchView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="This is a test"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/all_recipes_recyclerview"
         android:layout_width="match_parent"

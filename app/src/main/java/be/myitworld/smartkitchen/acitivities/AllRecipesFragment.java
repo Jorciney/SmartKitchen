@@ -9,20 +9,29 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.List;
 import be.myitworld.smartkitchen.R;
+import be.myitworld.smartkitchen.model.Recipe;
 import be.myitworld.smartkitchen.tools.AllRecipesRecyclerViewAdapter;
+import be.myitworld.smartkitchen.tools.Manager;
 
 /**
  * Created by Jorciney on 8/05/2016.
  */
-public class AllRecipesFragment extends Fragment {
+public class AllRecipesFragment extends Fragment implements SearchView.OnQueryTextListener {
     private static RecyclerView recyclerView;
     private static RecyclerView.LayoutManager mLayoutManager;
     public static AllRecipesRecyclerViewAdapter recyclerViewAdapter;
@@ -46,7 +55,7 @@ public class AllRecipesFragment extends Fragment {
         itemAnimator.setAddDuration(1000);
         recyclerView.setItemAnimator(itemAnimator);
         initSwipe();
-
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -108,5 +117,55 @@ public class AllRecipesFragment extends Fragment {
         if (view.getParent() != null) {
             ((ViewGroup) view.getParent()).removeView(view);
         }
+    }
+    /**
+     * Recipe search view/bar
+     */
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        final List<Recipe> filteredRecipes = filter(Manager.getInstance().recipes, newText);
+        recyclerViewAdapter.setFilter(filteredRecipes);
+        return true;
+    }
+
+    private List<Recipe> filter(List<Recipe> recipes, String query) {
+        query = query.toLowerCase();
+        final List<Recipe> filteredRecipes = new ArrayList<>();
+        for (Recipe r : recipes) {
+            final String text = r.getTitle().toLowerCase();
+            if (text.contains(query)) {
+                filteredRecipes.add(r);
+            }
+        }
+        return filteredRecipes;
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main, menu);
+
+        final MenuItem item = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(this);
+
+        MenuItemCompat.setOnActionExpandListener(item,
+                new MenuItemCompat.OnActionExpandListener() {
+                    @Override
+                    public boolean onMenuItemActionCollapse(MenuItem item) {
+                        recyclerViewAdapter.setFilter(Manager.getInstance().recipes);
+                        return true; // Return true to collapse action view
+                    }
+                    @Override
+                    public boolean onMenuItemActionExpand(MenuItem item) {
+                        return true; // Return true to expand action view
+                    }
+                });
     }
 }

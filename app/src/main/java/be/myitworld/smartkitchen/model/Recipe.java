@@ -1,7 +1,6 @@
 package be.myitworld.smartkitchen.model;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by Jorciney on 14/05/2016.
@@ -17,6 +16,8 @@ public class Recipe {
     private String author;
     private List<String> images;
     private int rate;
+    private List<Category> categories;
+
 
     public Recipe(long id, List<Ingredient> ingredients, String directions) {
         this.id = id;
@@ -102,6 +103,14 @@ public class Recipe {
 
     public void setRate(int rate) {
         this.rate = rate;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     @Override
