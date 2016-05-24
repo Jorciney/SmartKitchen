@@ -21,12 +21,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
+
 import java.util.ArrayList;
 import java.util.List;
 import be.myitworld.smartkitchen.R;
 import be.myitworld.smartkitchen.model.Recipe;
 import be.myitworld.smartkitchen.tools.AllRecipesRecyclerViewAdapter;
 import be.myitworld.smartkitchen.tools.Manager;
+import be.myitworld.smartkitchen.tools.Utils;
 
 /**
  * Created by Jorciney on 8/05/2016.
@@ -54,6 +59,8 @@ public class AllRecipesFragment extends Fragment implements SearchView.OnQueryTe
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         itemAnimator.setAddDuration(1000);
         recyclerView.setItemAnimator(itemAnimator);
+        recyclerView.addItemDecoration(new StickyRecyclerHeadersDecoration(recyclerViewAdapter));
+
         initSwipe();
         setHasOptionsMenu(true);
         return view;
@@ -68,12 +75,15 @@ public class AllRecipesFragment extends Fragment implements SearchView.OnQueryTe
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 return false;
             }
-
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 if (direction == ItemTouchHelper.LEFT) {
-                    recyclerViewAdapter.removeItem(position);
+                    if(Utils.SEARCH_ACTIVE!=true) {
+                        recyclerViewAdapter.removeItem(position);
+                    }else{
+                        recyclerViewAdapter.removeItemOnSearch(position);
+                    }
                 } else {
                     removeView();
                 }
@@ -129,6 +139,7 @@ public class AllRecipesFragment extends Fragment implements SearchView.OnQueryTe
 
     @Override
     public boolean onQueryTextChange(String newText) {
+        Utils.SEARCH_ACTIVE=true;
         final List<Recipe> filteredRecipes = filter(Manager.getInstance().recipes, newText);
         recyclerViewAdapter.setFilter(filteredRecipes);
         return true;
@@ -159,11 +170,13 @@ public class AllRecipesFragment extends Fragment implements SearchView.OnQueryTe
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
+                        Utils.SEARCH_ACTIVE=true;
                         recyclerViewAdapter.setFilter(Manager.getInstance().recipes);
                         return true; // Return true to collapse action view
                     }
                     @Override
                     public boolean onMenuItemActionExpand(MenuItem item) {
+                        Utils.SEARCH_ACTIVE=false;
                         return true; // Return true to expand action view
                     }
                 });

@@ -10,9 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.squareup.picasso.Picasso;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import be.myitworld.smartkitchen.R;
 import be.myitworld.smartkitchen.acitivities.MainActivity;
 import be.myitworld.smartkitchen.acitivities.RecipeFragment;
@@ -22,7 +26,7 @@ import be.myitworld.smartkitchen.model.Recipe;
 /**
  * Created by Jorciney on 8/05/2016.
  */
-public class AllRecipesRecyclerViewAdapter extends RecyclerView.Adapter<AllRecipesRecyclerViewAdapter.AllRecipesViewHolder> {
+public class AllRecipesRecyclerViewAdapter extends RecyclerView.Adapter<AllRecipesRecyclerViewAdapter.AllRecipesViewHolder> implements StickyRecyclerHeadersAdapter {
     private final Manager manager = Manager.getInstance();
     private Context context;
     public static Recipe recipe;
@@ -57,6 +61,7 @@ public class AllRecipesRecyclerViewAdapter extends RecyclerView.Adapter<AllRecip
         }
     }
 
+
     @Override
     public AllRecipesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_allrecipes_recyclerview, parent, false);
@@ -86,7 +91,6 @@ public class AllRecipesRecyclerViewAdapter extends RecyclerView.Adapter<AllRecip
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         allRecipesViewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,14 +113,46 @@ public class AllRecipesRecyclerViewAdapter extends RecyclerView.Adapter<AllRecip
     }
 
     public void removeItem(int position) {
+        Manager.getInstance().recipes.remove(position);
+        mRecipes = Manager.getInstance().recipes;
+        notifyDataSetChanged();
+    }
+
+    //Remove for when the search is active
+    public void removeItemOnSearch(int position) {
+        Recipe a = mRecipes.get(position);
+        for (int i = 0; i < Manager.getInstance().recipes.size(); i++) {
+            if (Manager.getInstance().recipes.get(i) == a) {
+                Manager.getInstance().recipes.remove(i);
+            }
+        }
         mRecipes.remove(position);
         notifyDataSetChanged();
-        notifyItemRemoved(position);
     }
 
     public void addItem(Recipe recipeItem) {
         mRecipes.add(recipeItem);
-        notifyItemInserted(mRecipes.size());
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public long getHeaderId(int position) {
+            return mRecipes.get(position).getTitle().charAt(0);
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.row_allrecipes_view_section_header, parent, false);
+        return new RecyclerView.ViewHolder(view) {
+        };
+    }
+
+    @Override
+    public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
+        TextView textView = (TextView) holder.itemView;
+        textView.setText(String.valueOf(mRecipes.get(position).getTitle().charAt(0)));
+        //holder.itemView.setBackgroundColor(Utils.getRandomColor());
     }
 
     /**

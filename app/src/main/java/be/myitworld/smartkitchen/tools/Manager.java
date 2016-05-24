@@ -1,6 +1,8 @@
 package be.myitworld.smartkitchen.tools;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import be.myitworld.smartkitchen.model.Ingredient;
@@ -167,5 +169,15 @@ public class Manager {
         recipes.add(recipe2);
         recipes.add(recipe3);
         recipes.add(recipe4);
+        recipes.add(recipe2);
+        recipes.add(recipe1);
+        recipes.add(recipe1);
+        recipes.add(recipe1);
+        Collections.sort(recipes, new Comparator<Recipe>() {
+            @Override
+            public int compare(Recipe o1, Recipe o2) {
+                return o1.getTitle().compareTo(o2.getTitle());
+            }
+        });
     }
 }
