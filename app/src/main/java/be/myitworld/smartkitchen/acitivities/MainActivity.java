@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import be.myitworld.smartkitchen.R;
+import be.myitworld.smartkitchen.model.Category;
 import be.myitworld.smartkitchen.tools.RootActivity;
 
 public class MainActivity extends RootActivity
@@ -72,7 +73,7 @@ public class MainActivity extends RootActivity
         } else if (id == R.id.nav_by_ingredients) {
 
         } else if (id == R.id.nav_by_category) {
-            fragmentClass = RecipeFragment.class;
+            fragmentClass = CategoriesFragment.class;
         } else if (id == R.id.nav_favorites) {
 
         } else if (id == R.id.nav_worlds_best) {

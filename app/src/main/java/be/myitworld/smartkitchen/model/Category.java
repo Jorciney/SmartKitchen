@@ -9,7 +9,12 @@ import java.util.Set;
 public class Category {
     private String name;
     private String imageUrl;
-    private Set<Recipe>recipes=new HashSet<>();
+    private Set<Recipe> recipes = new HashSet<>();
+
+    public Category(String name, String imageUrl) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
 
     public String getName() {
         return name;
@@ -33,6 +38,15 @@ public class Category {
 
     public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
+    }
+
+    public void addRecipe(Recipe r){
+        recipes.add(r);
+    }
+    public void addRecipes(Recipe ...myRecipes){
+        for (Recipe r: myRecipes) {
+            recipes.add(r);
+        }
     }
 
     @Override

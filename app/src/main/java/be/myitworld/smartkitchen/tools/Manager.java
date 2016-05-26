@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import be.myitworld.smartkitchen.model.Category;
 import be.myitworld.smartkitchen.model.Ingredient;
 import be.myitworld.smartkitchen.model.Recipe;
 
@@ -14,6 +15,7 @@ import be.myitworld.smartkitchen.model.Recipe;
 public class Manager {
     private static Manager ourInstance = new Manager();
     public static List<Recipe> recipes;
+    public static List<Category> categories;
     public static List<Ingredient> ingredients1;
     public static List<Ingredient> ingredients2;
     public static List<Ingredient> ingredients3;
@@ -25,14 +27,26 @@ public class Manager {
 
     private Manager() {
         recipes = new ArrayList<>();
-        ingredients1= new ArrayList();
-        ingredients2= new ArrayList();
-        ingredients3= new ArrayList();
-        ingredients4= new ArrayList();
+        ingredients1 = new ArrayList();
+        ingredients2 = new ArrayList();
+        ingredients3 = new ArrayList();
+        ingredients4 = new ArrayList();
+        categories = new ArrayList<>();
         setUpData();
     }
-    
+
     public void setUpData() {
+        categories.add(new Category("Breakfast", "http://sites.psu.edu/siowfa15/wp-content/uploads/sites/29639/2015/09/Pancake-Breakfast-1.jpg"));
+        categories.add(new Category("Italian", "http://i.imgur.com/0PzvezB.jpg"));
+        categories.add(new Category("Salad", "https://a.disquscdn.com/get?url=http%3A%2F%2Fresiliencefitness.com%2Fwp-content%2Fuploads%2F2013%2F09%2Fsalad.jpg"));
+        categories.add(new Category("Soup", "http://theculinarycook.com/wp-content/uploads/2012/04/types-of-soup.jpg"));
+        categories.add(new Category("Dessert", "http://img1.gtsstatic.com/wallpapers/1d7254c8a6ec469a6e8240cec095bc27_large.jpeg"));
+        categories.add(new Category("Chicken", "http://i.telegraph.co.uk/multimedia/archive/03112/roast-chicken_3112140b.jpg"));
+        categories.add(new Category("Barbecue", "http://www.food-faq.net/food/bbq.jpg"));
+        categories.add(new Category("Vegetarian", "https://realfood.tesco.com/media/images/vegetarian%20and%20vegan%20-%20hero-9bd99fb5-f500-4319-bd89-eb49912e6469-0-472x310.jpg"));
+        categories.add(new Category("Drinks", "http://static.glamurama.uol.com.br/2012/06/zena.jpg"));
+
+
         ingredients1.add(new Ingredient("Potatoes", "8", "peeled, cut into large wedges (about 6-7 wedges per potato)"));
         ingredients1.add(new Ingredient("Garlic cloves", "4", " minced (more garlic is a good thing, less garlic is a no-no for this recipe)"));
         ingredients1.add(new Ingredient("Olive oil", "1/2 cup"));
@@ -63,7 +77,7 @@ public class Manager {
             add("http://i349.photobucket.com/albums/q371/d-k-photos/greek-garlic-potatoes13.jpg");
             add("https://phoodingdotcom1.files.wordpress.com/2014/05/greek_potatoes.jpg");
         }});
-        
+
         ingredients2.clear();
         ingredients2.add(new Ingredient("Tomatoes", "12 ounces", "very ripe and cored"));
         ingredients2.add(new Ingredient("White Onion", "1 medium"));
@@ -132,7 +146,7 @@ public class Manager {
             add("http://brightcove.vo.llnwd.net/d22/unsecured/media/1033249144001/1033249144001_1653328464001_ari-origin05-arc-126-1337805378234.jpg");
             add("http://www.myfavandbestrecipes.com/wp-content/uploads/2013/08/Baked-Chicken-Macaroni-Casserole.jpg");
         }});
-        
+
         ingredients4.clear();
         ingredients4.add(new Ingredient("Ground beef", "1/2 kg", null));
         ingredients4.add(new Ingredient("Taco seasoning", "1 (1 1/4 ounce) package", null));
@@ -173,6 +187,22 @@ public class Manager {
         recipes.add(recipe1);
         recipes.add(recipe1);
         recipes.add(recipe1);
+        categories.get(0).addRecipes(recipe4, recipe3, recipe1);
+        categories.get(1).addRecipes(recipe1);
+        categories.get(2).addRecipes(recipe2, recipe3);
+        categories.get(3).addRecipes(recipe4, recipe1);
+        categories.get(4).addRecipes(recipe1);
+        categories.get(5).addRecipes(recipe1, recipe2, recipe3);
+        categories.get(6).addRecipes(recipe1, recipe2, recipe3);
+        categories.get(7).addRecipes(recipe1, recipe2, recipe3);
+        categories.get(8).addRecipes(recipe1, recipe2, recipe3);
+
+        Collections.sort(categories, new Comparator<Category>() {
+            @Override
+            public int compare(Category o1, Category o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
         Collections.sort(recipes, new Comparator<Recipe>() {
             @Override
             public int compare(Recipe o1, Recipe o2) {
