@@ -122,7 +122,7 @@ public class Recipe {
     public boolean equals(Object o) {
         if (o == null)
             return false;
-        else if (o instanceof Recipe && o != null && ((Recipe) o).getId() == this.getId())
+        else if (o instanceof Recipe && o != null && ((Recipe) o).getId() == this.getId() && ((Recipe)o).getTitle()==this.getTitle())
             return true;
         else return false;
     }

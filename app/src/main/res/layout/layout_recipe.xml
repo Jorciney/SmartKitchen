@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".acitivities.MainActivity">
 
     <LinearLayout
         android:id="@+id/recipe_linear_layout_main"
@@ -17,7 +18,7 @@
         <com.daimajia.slider.library.SliderLayout
             android:id="@+id/recipe_image_slider"
             android:layout_width="match_parent"
-            android:layout_height="180dp"/>
+            android:layout_height="180dp" />
 
 
         <com.daimajia.slider.library.Indicators.PagerIndicator
@@ -33,8 +34,21 @@
             android:background="@color/colorPrimary"
             android:clickable="true"
             app:tabIndicatorColor="#ffdd00"
-            app:tabSelectedTextColor="#fc024349"
+            app:tabSelectedTextColor="@color/dark_blue_grey_2"
             app:tabTextColor="#fcffffff" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floating_button_edit_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:layout_marginTop="-80dp"
+            app:backgroundTint="#ffaa00"
+            android:background="@color/white"
+            app:borderWidth="0dp"
+            android:src="@android:drawable/ic_menu_edit" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
@@ -42,4 +56,5 @@
             android:layout_height="match_parent"
             android:layout_below="@id/viewpagertab" />
     </LinearLayout>
-</LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,4 +1,4 @@
-package be.myitworld.smartkitchen.acitivities;
+package be.myitworld.smartkitchen.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,9 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import be.myitworld.smartkitchen.R;
-import be.myitworld.smartkitchen.model.Ingredient;
-import be.myitworld.smartkitchen.model.Recipe;
-import be.myitworld.smartkitchen.tools.Utils;
+import be.myitworld.smartkitchen.fragments.RecipeFragment;
 
 /**
  * Created by Jorciney on 21/05/2016.

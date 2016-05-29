@@ -1,4 +1,4 @@
-package be.myitworld.smartkitchen.acitivities;
+package be.myitworld.smartkitchen.fragments;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,37 +22,36 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
 import be.myitworld.smartkitchen.R;
 import be.myitworld.smartkitchen.model.Recipe;
-import be.myitworld.smartkitchen.tools.AllRecipesRecyclerViewAdapter;
+import be.myitworld.smartkitchen.adapters.RecipesListRecyclerViewAdapter;
 import be.myitworld.smartkitchen.tools.Manager;
 import be.myitworld.smartkitchen.tools.Utils;
 
 /**
  * Created by Jorciney on 8/05/2016.
  */
-public class AllRecipesFragment extends Fragment implements SearchView.OnQueryTextListener {
+public class RecipesListFragment extends Fragment implements SearchView.OnQueryTextListener {
     private static RecyclerView recyclerView;
     private static RecyclerView.LayoutManager mLayoutManager;
-    public static AllRecipesRecyclerViewAdapter recyclerViewAdapter;
+    public static RecipesListRecyclerViewAdapter recyclerViewAdapter;
     private Paint p = new Paint();
     private View view;
+    public static List<Recipe>recipes=Manager.getInstance().recipes;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.layout_all_recipes, container, false);
+        view = inflater.inflate(R.layout.layout_recipeslist, container, false);
 
         //RecyclerView
-        recyclerView = (RecyclerView) view.findViewById(R.id.all_recipes_recyclerview);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recipeslist_recyclerview);
         recyclerView.setHasFixedSize(true);
-        recyclerViewAdapter = new AllRecipesRecyclerViewAdapter();
-        recyclerViewAdapter.setContext(getContext());
+        recyclerViewAdapter = new RecipesListRecyclerViewAdapter(getContext(), RecipesListFragment.recipes);
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -63,6 +62,7 @@ public class AllRecipesFragment extends Fragment implements SearchView.OnQueryTe
 
         initSwipe();
         setHasOptionsMenu(true);
+
         return view;
     }
 

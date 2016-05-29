@@ -1,4 +1,4 @@
-package be.myitworld.smartkitchen.acitivities;
+package be.myitworld.smartkitchen.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

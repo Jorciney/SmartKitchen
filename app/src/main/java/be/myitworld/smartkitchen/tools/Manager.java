@@ -20,6 +20,7 @@ public class Manager {
     public static List<Ingredient> ingredients2;
     public static List<Ingredient> ingredients3;
     public static List<Ingredient> ingredients4;
+    public static List<Recipe>  favorites;
 
     public static Manager getInstance() {
         return ourInstance;
@@ -32,6 +33,7 @@ public class Manager {
         ingredients3 = new ArrayList();
         ingredients4 = new ArrayList();
         categories = new ArrayList<>();
+        favorites = new ArrayList<>();
         setUpData();
     }
 
@@ -68,6 +70,7 @@ public class Manager {
                 "Note: I often melt a bouillon cube in the water; if you do, make sure to cut back some on the salt.";
         Recipe recipe1 = new Recipe(1, ingredients1, directions);
         recipe1.setTitle("Greek Potatoes");
+        recipe1.setId(1);
         recipe1.setPortions(8);
         recipe1.setAuthor("Evelyn/athens");
         recipe1.setTime("1hr 29min");
@@ -105,6 +108,7 @@ public class Manager {
                 "You'll love this rice! Money back guarantee.";
         Recipe recipe2 = new Recipe(2, ingredients2, directions);
         recipe2.setTitle("Mexican Rice");
+        recipe2.setId(2);
         recipe2.setAuthor("Pot Scrubber");
         recipe2.setPortions(8);
         recipe2.setTime("55min");
@@ -137,6 +141,7 @@ public class Manager {
                 "Top with remaining ½ cup cheese and bake 5 minutes.";
         Recipe recipe3 = new Recipe(3, ingredients3, directions);
         recipe3.setTitle("Chicken-Macaroni Casserole");
+        recipe3.setId(3);
         recipe3.setAuthor("Ratherbeswimmin'");
         recipe3.setPortions(8);
         recipe3.setTime("1hr");
@@ -171,6 +176,7 @@ public class Manager {
         Recipe recipe4 = new Recipe(3, ingredients4, directions);
         recipe4.setTitle("Fantastic Taco Casserole");
         recipe4.setAuthor("Leilani'");
+        recipe4.setId(4);
         recipe4.setPortions(7);
         recipe4.setTime("30min");
         recipe4.setImages(new ArrayList<String>() {{
@@ -196,6 +202,8 @@ public class Manager {
         categories.get(6).addRecipes(recipe1, recipe2, recipe3);
         categories.get(7).addRecipes(recipe1, recipe2, recipe3);
         categories.get(8).addRecipes(recipe1, recipe2, recipe3);
+        favorites.clear();
+        favorites.add(recipe2);
 
         Collections.sort(categories, new Comparator<Category>() {
             @Override

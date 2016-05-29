@@ -1,16 +1,15 @@
-package be.myitworld.smartkitchen.acitivities;
+package be.myitworld.smartkitchen.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -19,7 +18,7 @@ import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import be.myitworld.smartkitchen.R;
 import be.myitworld.smartkitchen.model.Recipe;
-import be.myitworld.smartkitchen.tools.MyTabsPagerAdapter;
+import be.myitworld.smartkitchen.adapters.MyTabsPagerAdapter;
 
 /**
  * Created by Jorciney on 21/05/2016.
@@ -75,6 +74,15 @@ public class RecipeFragment extends Fragment implements BaseSliderView.OnSliderC
                 sliderLayout.addSlider(sliderView);
             }
         }
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.floating_button_edit_recipe);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
         return view;
     }
     @Override

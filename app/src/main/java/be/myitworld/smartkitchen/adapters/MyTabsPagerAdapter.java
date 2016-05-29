@@ -1,12 +1,12 @@
-package be.myitworld.smartkitchen.tools;
+package be.myitworld.smartkitchen.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import java.util.ArrayList;
-import be.myitworld.smartkitchen.acitivities.DirectionsFrag;
-import be.myitworld.smartkitchen.acitivities.IngredientsFrag;
-import be.myitworld.smartkitchen.acitivities.RecipeInfoFrag;
+import be.myitworld.smartkitchen.fragments.DirectionsFrag;
+import be.myitworld.smartkitchen.fragments.IngredientsFrag;
+import be.myitworld.smartkitchen.fragments.RecipeInfoFrag;
 
 /**
  * Created by Jorciney on 22/05/2016.

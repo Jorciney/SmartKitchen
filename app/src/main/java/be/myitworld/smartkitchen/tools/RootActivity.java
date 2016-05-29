@@ -56,10 +56,6 @@ public class RootActivity extends AppCompatActivity {
     }
 
 
-    private void createToast(String s) {
-        Toast.makeText(this, s, Toast.LENGTH_LONG).show();
-    }
-
     private void setNewIntent(Class intentClass) {
         Intent intent = new Intent(this, intentClass);
         startActivity(intent);
