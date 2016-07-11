@@ -11,14 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+
 import be.myitworld.smartkitchen.R;
-import be.myitworld.smartkitchen.model.Recipe;
 import be.myitworld.smartkitchen.adapters.MyTabsPagerAdapter;
+import be.myitworld.smartkitchen.model.Recipe;
 
 /**
  * Created by Jorciney on 21/05/2016.
@@ -85,6 +87,7 @@ public class RecipeFragment extends Fragment implements BaseSliderView.OnSliderC
         });
         return view;
     }
+
     @Override
     public void onSliderClick(BaseSliderView slider) {
     }

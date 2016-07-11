@@ -22,6 +22,7 @@ import be.myitworld.smartkitchen.acitivities.MainActivity;
 import be.myitworld.smartkitchen.fragments.RecipeFragment;
 import be.myitworld.smartkitchen.model.Recipe;
 import be.myitworld.smartkitchen.tools.Manager;
+import be.myitworld.smartkitchen.tools.Utils;
 
 
 /**
@@ -104,6 +105,7 @@ public class RecipesListRecyclerViewAdapter extends RecyclerView.Adapter<Recipes
         allRecipesViewHolder.layout.get().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.CURRENT_FRAGMENT = Utils.FRAGMENT_RECIPELIST_RECIPE;
                 RecipeFragment.recipe = mRecipes.get(position);
                 activity = (FragmentActivity) v.getContext();
                 activity.setTitle(mRecipes.get(position).getTitle());

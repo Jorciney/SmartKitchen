@@ -10,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import be.myitworld.smartkitchen.R;
+import be.myitworld.smartkitchen.acitivities.MainActivity;
 import be.myitworld.smartkitchen.tools.AutofitRecyclerView;
 import be.myitworld.smartkitchen.adapters.CatergoryRecyclerViewAdapter;
 import be.myitworld.smartkitchen.tools.Manager;
+import be.myitworld.smartkitchen.tools.Utils;
 
 /**
  * Created by Jorciney on 8/05/2016.
@@ -35,5 +37,10 @@ public class CategoriesFragment extends Fragment {
         recyclerViewAdapter = new CatergoryRecyclerViewAdapter(getContext(), Manager.getInstance().categories);
         recyclerView.setAdapter(recyclerViewAdapter);
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

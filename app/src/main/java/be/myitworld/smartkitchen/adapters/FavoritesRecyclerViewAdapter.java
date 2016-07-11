@@ -20,6 +20,7 @@ import be.myitworld.smartkitchen.acitivities.MainActivity;
 import be.myitworld.smartkitchen.fragments.RecipeFragment;
 import be.myitworld.smartkitchen.model.Recipe;
 import be.myitworld.smartkitchen.tools.Manager;
+import be.myitworld.smartkitchen.tools.Utils;
 
 /**
  * Created by Jorciney on 26/05/2016.
@@ -56,6 +57,7 @@ public class FavoritesRecyclerViewAdapter extends RecyclerView.Adapter<Favorites
         holder.view.get().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.CURRENT_FRAGMENT = Utils.FRAGMENT_FAVORITES_RECIPE;
                 RecipeFragment.recipe = mFavorites.get().get(position);
                 activity = (FragmentActivity) v.getContext();
                 activity.setTitle(mFavorites.get().get(position).getTitle());

@@ -23,6 +23,7 @@ import be.myitworld.smartkitchen.fragments.RecipesListFragment;
 import be.myitworld.smartkitchen.model.Category;
 import be.myitworld.smartkitchen.model.Recipe;
 import be.myitworld.smartkitchen.tools.Manager;
+import be.myitworld.smartkitchen.tools.Utils;
 
 /**
  * Created by Jorciney on 26/05/2016.
@@ -36,7 +37,7 @@ public class CatergoryRecyclerViewAdapter extends RecyclerView.Adapter<Catergory
 
     public CatergoryRecyclerViewAdapter(Context context, List<Category> categories) {
         this.context = context;
-        this.mCategories=categories;
+        this.mCategories = categories;
     }
 
     @Override
@@ -55,12 +56,12 @@ public class CatergoryRecyclerViewAdapter extends RecyclerView.Adapter<Catergory
         holder.view.get().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MainActivity.CURRENT_FRAGMENT = Utils.FRAGMENT_CATEGORY_RECIPELIST;
                 activity = (FragmentActivity) v.getContext();
                 activity.setTitle(mCategories.get(position).getName());
-                List <Recipe>recipes=new ArrayList<Recipe>();
+                List<Recipe> recipes = new ArrayList<Recipe>();
                 recipes.addAll(mCategories.get(position).getRecipes());
-                RecipesListFragment.recipes=recipes;
+                RecipesListFragment.recipes = recipes;
                 replaceFragment(RecipesListFragment.class);
             }
         });
@@ -82,13 +83,14 @@ public class CatergoryRecyclerViewAdapter extends RecyclerView.Adapter<Catergory
 
         public CategoryViewHolder(View v) {
             super(v);
-            view=new WeakReference<View>(v);
+            view = new WeakReference<View>(v);
             categoryImage = new WeakReference<ImageView>((ImageView) v.findViewById(R.id.category_imageView));
             categoryName = new WeakReference<TextView>((TextView) v.findViewById(R.id.category_name_text));
             cardView = new WeakReference<CardView>((CardView) v.findViewById(R.id.category_cardView));
             linearLayout = new WeakReference<LinearLayout>((LinearLayout) v.findViewById(R.id.categories_linearlayout));
         }
     }
+
     private void replaceFragment(final Class mClass) {
         if (context == null)
             return;

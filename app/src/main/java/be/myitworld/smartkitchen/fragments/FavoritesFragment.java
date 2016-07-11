@@ -12,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import be.myitworld.smartkitchen.R;
+import be.myitworld.smartkitchen.acitivities.MainActivity;
 import be.myitworld.smartkitchen.adapters.FavoritesRecyclerViewAdapter;
 import be.myitworld.smartkitchen.tools.AutofitRecyclerView;
 import be.myitworld.smartkitchen.tools.Manager;
+import be.myitworld.smartkitchen.tools.Utils;
 
 /**
  * Created by Jorciney on 8/05/2016.
@@ -31,7 +33,7 @@ public class FavoritesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.layout_favorites_recipes, container, false);
-
+        MainActivity.CURRENT_FRAGMENT = Utils.FRAGMENT_FAVORITES;
         //RecyclerView
         recyclerView = (RecyclerView) view.findViewById(R.id.favorites_recyclerview);
         recyclerView.setHasFixedSize(true);

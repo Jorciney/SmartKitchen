@@ -26,9 +26,11 @@ import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import be.myitworld.smartkitchen.R;
-import be.myitworld.smartkitchen.model.Recipe;
+import be.myitworld.smartkitchen.acitivities.MainActivity;
 import be.myitworld.smartkitchen.adapters.RecipesListRecyclerViewAdapter;
+import be.myitworld.smartkitchen.model.Recipe;
 import be.myitworld.smartkitchen.tools.Manager;
 import be.myitworld.smartkitchen.tools.Utils;
 
@@ -47,7 +49,6 @@ public class RecipesListFragment extends Fragment implements SearchView.OnQueryT
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.layout_recipeslist, container, false);
-
         //RecyclerView
         recyclerView = (RecyclerView) view.findViewById(R.id.recipeslist_recyclerview);
         recyclerView.setHasFixedSize(true);
